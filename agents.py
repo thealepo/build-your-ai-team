@@ -28,18 +28,38 @@ def call_gemini(
             tools=tools,
             temperature=0.7,
         )
-        response = client.models.generate_content(
+        # Chat.send_message avoids the SDK warning about using tools directly
+        # with models.generate_content, while keeping the code easy to follow.
+        chat = client.chats.create(
             model=model,
-            contents=user_prompt,
             config=config,
         )
+        response = chat.send_message(user_prompt)
     except Exception as error:
+        error_text = str(error)
+
+        if "429" in error_text or "RESOURCE_EXHAUSTED" in error_text:
+            raise AgentError(
+                "HackTeam reached the Gemini API quota or rate limit.\n\n"
+                "This can happen during workshops because HackTeam makes multiple Gemini calls:\n"
+                "- Research Agent\n"
+                "- Product Agent\n"
+                "- Engineering Agent\n"
+                "- Manager Agent\n\n"
+                "What to try:\n"
+                "- Wait a few minutes and run it again\n"
+                "- Check your usage at https://ai.dev/rate-limit\n"
+                "- Use a different API key if you have one\n"
+                "- During development, test one agent at a time instead of the full team\n\n"
+                f"Original error: {error}"
+            ) from error
+
         raise AgentError(
             "HackTeam could not reach Gemini right now.\n\n"
             "Possible causes:\n"
-            "- API rate limit reached\n"
             "- Invalid Gemini API key\n"
-            "- Temporary network issue\n\n"
+            "- Temporary network issue\n"
+            "- Temporary Gemini service issue\n\n"
             f"Original error: {error}"
         ) from error
 

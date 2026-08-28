@@ -81,7 +81,6 @@ def run_app() -> None:
     print("=" * 48)
     print(blueprint)
 
-
 def main() -> None:
     run_app()
 
