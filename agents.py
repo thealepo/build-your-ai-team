@@ -11,7 +11,7 @@ def create_client(api_key: str) -> genai.Client:
 
 def request_gemini(client, model, instruction, prompt, tools=None):
     """Make one Gemini request for any agent."""
-    generation_config = {"temperature": 0.5}
+    generation_config = {}
     if tools:
         generation_config["tool_choice"] = "any"
     return client.interactions.create(
@@ -19,7 +19,7 @@ def request_gemini(client, model, instruction, prompt, tools=None):
         input=prompt,
         system_instruction=instruction,
         tools=tools or [],
-        generation_config=generation_config,
+        generation_config={generation_config},
         store=False,
     )
 
@@ -190,9 +190,6 @@ Include exact documentation links and resource IDs for recommended resources.
 Clearly label design choices, user-need hypotheses, and facts needing
 verification. Do not claim to have browsed the linked pages. A catalog entry
 is a short reviewed description, not a copy of the full documentation.
-Do not describe an email suffix check alone as secure authentication.
-Do not recommend open cloud database permissions. For a demo without login,
-use local mock data or an emulator; a local frontend does not make a cloud database local.
 
 Use this structure:
 # Project Name
