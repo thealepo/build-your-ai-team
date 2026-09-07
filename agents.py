@@ -1,7 +1,5 @@
 import json
-
 from google import genai
-
 from tools import RESOURCE_SEARCH_TOOL, search_hackathon_resources
 
 
@@ -10,28 +8,24 @@ def create_client(api_key: str) -> genai.Client:
 
 
 def request_gemini(client, model, instruction, prompt, tools=None):
-    """Make one Gemini request for any agent."""
     generation_config = {}
     if tools:
-        generation_config["tool_choice"] = "any"
+        generation_config['tool_choice'] = 'any'
     return client.interactions.create(
         model=model,
         input=prompt,
         system_instruction=instruction,
         tools=tools or [],
-        generation_config={generation_config},
+        generation_config=generation_config,
         store=False,
     )
 
-
 def call_gemini(client, model, system_instruction, user_prompt):
-    """Run an ordinary agent and return its text."""
     response = request_gemini(client, model, system_instruction, user_prompt)
     return response.output_text
 
-
 def build_project_prompt(idea: str, context: str) -> str:
-    extra_context = context.strip() or "No extra context was provided."
+    extra_context = context.strip() or 'No extra context was provided.'
     return f"""
 Hackathon idea:
 {idea.strip()}
@@ -39,7 +33,6 @@ Hackathon idea:
 Extra context:
 {extra_context}
 """.strip()
-
 
 def run_research_agent(client, model, idea, context="", reporter=None):
     instruction = """
@@ -56,25 +49,25 @@ recommended combination. Label assumptions instead of inventing facts.
 """.strip()
     prompt = build_project_prompt(idea, context)
 
-    # 1. Gemini selects search arguments. Only Research receives a tool.
+    # gemini selects search arguments. Only Research receives a tool.
     response = request_gemini(
         client, model, instruction, prompt, tools=[RESOURCE_SEARCH_TOOL]
     )
-    calls = [step for step in response.steps if step.type == "function_call"]
+    calls = [step for step in response.steps if step.type == 'function_call']
 
-    # 2. Python runs the requested searches locally.
+    # python runs the requested searches locally
     resources = []
     for call in calls[:3]:
-        query = call.arguments["query"]
+        query = call.arguments['query']
         matches = search_hackathon_resources(query)
         resources.extend(matches)
 
         if reporter:
             reporter(f"    [Researcher -> Tool] Search: {query}")
-            names = ", ".join(item["name"] for item in matches) or "No matches"
+            names = ", ".join(item['name'] for item in matches) or 'No matches'
             reporter(f"    [Tool -> Researcher] {names}")
 
-    # 3. Return evidence in a fresh prompt without tools, so the search stops.
+    # return evidence in a fresh prompt without tools, so the search stops
     evidence = "\n\nCatalog evidence (original records):\n" + json.dumps(resources)
     brief = call_gemini(
         client,
@@ -82,12 +75,11 @@ recommended combination. Label assumptions instead of inventing facts.
         instruction,
         prompt + evidence + "\nWrite the research brief using these results.",
     )
-    # Keep original sources available to Engineering and Manager as well.
+    # keep original sources available to Engineering and Manager as well
     return brief + evidence
 
-
 def run_product_agent(
-    client: genai.Client, model: str, idea: str, context: str = ""
+    client: genai.Client, model: str, idea: str, context: str = ''
 ) -> str:
     system_instruction = """
 You are the Product Agent in this multi-agent hackathon planning team.
@@ -122,8 +114,8 @@ def run_engineering_agent(
     client: genai.Client,
     model: str,
     idea: str,
-    context: str = "",
-    research_results: str = "",
+    context: str = '',
+    research_results: str = '',
 ) -> str:
     system_instruction = """
 You are the Engineering Agent in this multi-agent hackathon planning team.
@@ -239,14 +231,14 @@ Create the final hackathon blueprint.
         user_prompt=prompt,
     )
 
+
 def build_hackathon_blueprint(
-    client: genai.Client, model: str, idea: str, context: str = ""
+    client: genai.Client, model: str, idea: str, context: str = ''
 ) -> str:
-    """Run the simple multi-agent workflow from specialists to manager."""
-    research_results = run_research_agent(client, model, idea, context)
-    product_plan = run_product_agent(client, model, idea, context)
+    research_results = run_research_agent(client , model , idea , context)
+    product_plan = run_product_agent(client , model , idea , context)
     engineering_plan = run_engineering_agent(
-        client, model, idea, context, research_results=research_results
+        client , model , idea , context , research_results=research_results
     )
 
     return run_manager_agent(

@@ -9,9 +9,9 @@ from config import load_config
 
 
 def print_header() -> None:
-    print("=" * 48)
-    print("Your Multi-Agent AI Hackathon Planning Team.")
-    print("=" * 48)
+    print('=' * 48)
+    print('Your Multi-Agent AI Hackathon Planning Team.')
+    print('=' * 48)
 
 
 def ask_multiline(prompt: str) -> str:
@@ -20,12 +20,12 @@ def ask_multiline(prompt: str) -> str:
 
     lines = []
     while True:
-        line = input("> ")
-        if line == "":
+        line = input('> ')
+        if line == '':
             break
         lines.append(line)
 
-    return "\n".join(lines).strip()
+    return '\n'.join(lines).strip()
 
 
 def ask_for_idea() -> str:
@@ -37,8 +37,7 @@ def ask_for_idea() -> str:
 
 
 def build_blueprint() -> str:
-    """Collect input and run the four-agent workflow."""
-    api_key, model = load_config()
+    api_key , model = load_config()
     client = create_client(api_key)
 
     idea = ask_for_idea()
@@ -51,15 +50,15 @@ def build_blueprint() -> str:
 
     print("[Researcher] Searching the hackathon resource catalog...")
     research = run_research_agent(
-        client, model, idea, context, reporter=print
+        client , model , idea , context , reporter=print
     )
 
     print("[Product] Designing a focused MVP...")
-    product = run_product_agent(client, model, idea, context)
+    product = run_product_agent(client , model , idea , context)
 
     print("[Engineer] Planning the simplest workable architecture...")
     engineering = run_engineering_agent(
-        client, model, idea, context, research_results=research
+        client , model , idea , context , research_results=research
     )
 
     print("[Manager] Building your final hackathon blueprint...")
@@ -79,9 +78,9 @@ def run_app() -> None:
 
     blueprint = build_blueprint()
 
-    print("\n" + "=" * 48)
-    print("             YOUR HACKATHON PLAN")
-    print("=" * 48)
+    print('\n' + '=' * 48)
+    print('             YOUR HACKATHON PLAN')
+    print('=' * 48)
     print(blueprint)
 
 
