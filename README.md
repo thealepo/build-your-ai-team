@@ -52,6 +52,11 @@ listing Search grounding as unavailable on the Gemini 3.x API free tier.
 - Switching from the Gemini API to another API, such as the OpenAI API or
 Anthropic's API.
 
+- You can also replace our tool resource search in `tools.py` with what we call a vector database, establishing
+a RAG pipeline. This is a very important skill to learn and build intuition for, 
+so I recommend [this](https://www.geeksforgeeks.org/nlp/what-is-retrieval-augmented-generation-rag/) article to get started, 
+alongside [this](https://www.youtube.com/watch?v=ea2W8IogX80) video.
+
 ## Gemini API Reference
 
 API reference: [Google's Interactions guide](https://ai.google.dev/gemini-api/docs/interactions-overview).

@@ -23,16 +23,17 @@ def search_hackathon_resources(query: str) -> list[dict]:
     with RESOURCE_CATALOG_PATH.open(encoding='utf-8') as catalog_file:
         catalog = json.load(catalog_file)
 
-    query_words = set(re.findall(r"[a-z0-9]+", query.lower()))
+    query_words = set(re.findall(r'[a-z0-9]+' , query.lower()))
     matches = []
+    
     for resource in catalog:
         searchable_text = ' '.join(
-            [resource['name'], *resource['tags'], resource['summary']]
+            [resource['name'] , *resource['tags'] , resource['summary']]
         )
-        resource_words = set(re.findall(r'[a-z0-9]+', searchable_text.lower()))
+        resource_words = set(re.findall(r'[a-z0-9]+' , searchable_text.lower()))
         score = len(query_words & resource_words)
         if score:
             matches.append((score, resource))
 
-    matches.sort(key=lambda match: match[0], reverse=True)
-    return [resource for _, resource in matches[:3]]
+    matches.sort(key=lambda match: match[0] , reverse=True)
+    return [resource for _,resource in matches[:3]]

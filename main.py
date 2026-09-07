@@ -72,7 +72,6 @@ def build_blueprint() -> str:
         engineering_plan=engineering,
     )
 
-
 def run_app() -> None:
     print_header()
 
