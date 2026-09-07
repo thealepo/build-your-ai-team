@@ -1,0 +1,1386 @@
+[
+  {
+    "id": "gemini-api",
+    "name": "Gemini Developer API",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai"],
+    "tags": ["gemini", "llm", "generative", "text", "image", "audio", "multimodal", "function-calling"],
+    "summary": "Google's API for Gemini models, multimodal generation, structured output, and tool calling.",
+    "best_for": ["AI features", "multimodal prototypes", "agent workflows", "structured responses"],
+    "avoid_when": ["the project does not benefit from generative AI", "you cannot tolerate free-tier capacity limits"],
+    "free_tier": "free_with_limits",
+    "cost_note": "A free developer tier exists for supported models. Model and tool quotas vary, so verify the pricing and rate-limit pages.",
+    "docs_url": "https://ai.google.dev/gemini-api/docs",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-ai-studio",
+    "name": "Google AI Studio",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai", "productivity"],
+    "tags": ["gemini", "prompt", "prototype", "api-key", "testing"],
+    "summary": "Browser workspace for trying Gemini models, prompts, tools, and obtaining a Gemini API key.",
+    "best_for": ["prompt experiments", "model comparison", "API key setup", "instructor demos"],
+    "avoid_when": ["you need the final experience embedded in your own application"],
+    "free_tier": "free_with_limits",
+    "cost_note": "Interactive use and free-tier API access are available, subject to product and model limits.",
+    "docs_url": "https://ai.google.dev/aistudio",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "firebase-auth",
+    "name": "Firebase Authentication",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["authentication"],
+    "tags": ["auth", "authentication", "login", "users", "google-sign-in", "web", "mobile", "beginner"],
+    "summary": "Managed user authentication with client SDKs and common identity providers.",
+    "best_for": ["quick login", "Google sign-in", "web and mobile prototypes"],
+    "avoid_when": ["you need complex enterprise authorization", "you plan heavy phone-number authentication without checking pricing"],
+    "free_tier": "free_with_limits",
+    "cost_note": "Common authentication methods are suitable for small prototypes; phone authentication and Identity Platform features can have separate pricing.",
+    "docs_url": "https://firebase.google.com/docs/auth",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "cloud-firestore",
+    "name": "Cloud Firestore",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["database", "data"],
+    "tags": ["database", "nosql", "documents", "realtime", "firebase", "web", "mobile"],
+    "summary": "Managed document database with Firebase client SDKs and realtime listeners.",
+    "best_for": ["application records", "realtime UI updates", "serverless web and mobile apps"],
+    "avoid_when": ["you require complex relational joins", "you have not designed security rules"],
+    "free_tier": "free_with_limits",
+    "cost_note": "Firestore provides a no-cost quota appropriate for many prototypes; usage beyond the quota is billed.",
+    "docs_url": "https://firebase.google.com/docs/firestore",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "firebase-realtime-database",
+    "name": "Firebase Realtime Database",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["database", "data"],
+    "tags": ["database", "json", "realtime", "sync", "firebase", "chat", "presence"],
+    "summary": "Cloud-hosted JSON database that synchronizes changes to connected clients.",
+    "best_for": ["live presence", "simple chat", "small synchronized state"],
+    "avoid_when": ["your data has complex query or relational requirements"],
+    "free_tier": "free_with_limits",
+    "cost_note": "The Firebase Spark plan includes limited database storage and transfer for prototypes.",
+    "docs_url": "https://firebase.google.com/docs/database",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "firebase-hosting",
+    "name": "Firebase Hosting",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["hosting"],
+    "tags": ["hosting", "deploy", "static", "web", "firebase", "cdn", "frontend"],
+    "summary": "Fast hosting and deployment for static sites and single-page web applications.",
+    "best_for": ["frontend demos", "static sites", "single-page applications"],
+    "avoid_when": ["your application requires a long-running custom server"],
+    "free_tier": "free_with_limits",
+    "cost_note": "The Spark plan includes limited hosting storage and data transfer suitable for small demos.",
+    "docs_url": "https://firebase.google.com/docs/hosting",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "firebase-app-hosting",
+    "name": "Firebase App Hosting",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["hosting", "compute"],
+    "tags": ["hosting", "deploy", "nextjs", "angular", "full-stack", "firebase"],
+    "summary": "Managed deployment for supported full-stack web frameworks with Google Cloud infrastructure.",
+    "best_for": ["Next.js applications", "Angular applications", "managed full-stack deployment"],
+    "avoid_when": ["students cannot enable billing", "a static Firebase Hosting deployment is sufficient"],
+    "free_tier": "billing_required",
+    "cost_note": "App Hosting requires the Firebase Blaze pay-as-you-go plan even when underlying services have no-cost allowances.",
+    "docs_url": "https://firebase.google.com/docs/app-hosting",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "firebase-ai-logic",
+    "name": "Firebase AI Logic",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai"],
+    "tags": ["gemini", "firebase", "web", "mobile", "client-sdk", "ai"],
+    "summary": "Firebase SDKs for calling Gemini models from web and mobile applications with application protections.",
+    "best_for": ["Gemini features in a client app", "Firebase-based prototypes", "mobile AI experiences"],
+    "avoid_when": ["a simple trusted backend call is easier", "you have not configured App Check and API restrictions"],
+    "free_tier": "free_with_limits",
+    "cost_note": "Can use Gemini Developer API free-tier models; model quotas and Firebase service limits still apply.",
+    "docs_url": "https://firebase.google.com/docs/ai-logic",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "genkit",
+    "name": "Genkit",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai"],
+    "tags": ["ai", "agents", "flows", "evaluation", "observability", "typescript", "go"],
+    "summary": "Open-source framework for building, testing, and observing AI-powered application flows.",
+    "best_for": ["larger AI workflows", "prompt testing", "tracing AI application behavior"],
+    "avoid_when": ["a beginner workshop benefits from showing the underlying function calls directly"],
+    "free_tier": "free",
+    "cost_note": "The framework is open source; connected model and hosting services have their own pricing.",
+    "docs_url": "https://firebase.google.com/docs/genkit",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-cloud-run",
+    "name": "Google Cloud Run",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["hosting", "compute"],
+    "tags": ["backend", "server", "container", "docker", "api", "hosting", "serverless"],
+    "summary": "Managed service for deploying containerized web applications and APIs.",
+    "best_for": ["Python APIs", "containerized backends", "webhooks", "custom servers"],
+    "avoid_when": ["students cannot enable a Cloud billing account", "the team has no Docker experience and a simpler host works"],
+    "free_tier": "billing_required",
+    "cost_note": "Cloud Run has a recurring no-cost usage allowance, but a Google Cloud billing account is normally required.",
+    "docs_url": "https://cloud.google.com/run/docs",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "bigquery-sandbox",
+    "name": "BigQuery Sandbox",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["data", "database"],
+    "tags": ["sql", "analytics", "dataset", "big-data", "warehouse", "public-data"],
+    "summary": "No-cost way to explore BigQuery and query public datasets without a billing account.",
+    "best_for": ["SQL analytics", "public datasets", "data-heavy prototypes"],
+    "avoid_when": ["you need a transactional application database", "sandbox expiration limits do not fit the project"],
+    "free_tier": "free_with_limits",
+    "cost_note": "The sandbox works without a credit card but has storage, processing, and expiration limitations.",
+    "docs_url": "https://cloud.google.com/bigquery/docs/sandbox",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-colab",
+    "name": "Google Colab",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai", "compute", "data"],
+    "tags": ["python", "notebook", "machine-learning", "gpu", "data-science", "demo"],
+    "summary": "Hosted Jupyter notebook environment for Python experiments and shareable demonstrations.",
+    "best_for": ["data exploration", "machine-learning prototypes", "shareable Python notebooks"],
+    "avoid_when": ["you need an always-on production backend", "the demo requires guaranteed accelerators"],
+    "free_tier": "free_with_limits",
+    "cost_note": "A free runtime is available, but resources, accelerator access, and session duration are not guaranteed.",
+    "docs_url": "https://colab.google/",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "mediapipe",
+    "name": "MediaPipe Solutions",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai"],
+    "tags": ["vision", "pose", "gesture", "face", "object-detection", "on-device", "mobile", "web"],
+    "summary": "Cross-platform libraries and pretrained tasks for vision, text, and audio processing.",
+    "best_for": ["gesture recognition", "pose tracking", "face landmarks", "on-device demos"],
+    "avoid_when": ["you need a highly specialized model not covered by a packaged task"],
+    "free_tier": "free",
+    "cost_note": "MediaPipe libraries and packaged models can run locally without per-request API charges.",
+    "docs_url": "https://ai.google.dev/edge/mediapipe/solutions/guide",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-ml-kit",
+    "name": "Google ML Kit",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai"],
+    "tags": ["mobile", "android", "ios", "vision", "ocr", "barcode", "translation", "on-device"],
+    "summary": "Mobile SDKs for common machine-learning tasks such as text recognition and barcode scanning.",
+    "best_for": ["mobile OCR", "barcode scanning", "language identification", "on-device features"],
+    "avoid_when": ["the project is web-only", "you require unsupported custom model behavior"],
+    "free_tier": "free_with_limits",
+    "cost_note": "Many on-device APIs are available without per-request charges; cloud-backed features can differ.",
+    "docs_url": "https://developers.google.com/ml-kit",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "tensorflow-js",
+    "name": "TensorFlow.js",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai"],
+    "tags": ["javascript", "browser", "machine-learning", "model", "on-device", "web"],
+    "summary": "JavaScript library for running and training machine-learning models in browsers or Node.js.",
+    "best_for": ["browser-based ML", "local inference", "interactive ML demonstrations"],
+    "avoid_when": ["a hosted API would be much simpler", "the model is too large for student devices"],
+    "free_tier": "free",
+    "cost_note": "Open-source library with no API charge; computation runs on your own device or infrastructure.",
+    "docs_url": "https://www.tensorflow.org/js",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "teachable-machine",
+    "name": "Teachable Machine",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai"],
+    "tags": ["no-code", "image", "audio", "pose", "classification", "beginner", "model"],
+    "summary": "Browser tool for training simple image, sound, and pose models without writing training code.",
+    "best_for": ["beginner ML demos", "custom classifiers", "rapid interactive prototypes"],
+    "avoid_when": ["you need production-grade accuracy", "the problem requires large or sensitive datasets"],
+    "free_tier": "free",
+    "cost_note": "The browser tool is free to use; exported models can run locally.",
+    "docs_url": "https://teachablemachine.withgoogle.com/",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "gemma",
+    "name": "Gemma",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["ai"],
+    "tags": ["open-model", "local", "llm", "offline", "hugging-face", "kaggle"],
+    "summary": "Google's family of open models that can be run or adapted on compatible local and hosted hardware.",
+    "best_for": ["offline model experiments", "open-weight projects", "custom deployment"],
+    "avoid_when": ["student hardware cannot run the selected model", "a hosted Gemini API call is simpler"],
+    "free_tier": "free",
+    "cost_note": "Model access is free under its license; running it may require your own compute.",
+    "docs_url": "https://ai.google.dev/gemma",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-maps-platform",
+    "name": "Google Maps Platform",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["maps", "data"],
+    "tags": ["map", "maps", "places", "routes", "geocoding", "location", "navigation"],
+    "summary": "APIs and SDKs for interactive maps, places, geocoding, and routes.",
+    "best_for": ["location-based demos", "place search", "directions", "map visualization"],
+    "avoid_when": ["students cannot enable billing", "a basic open map is sufficient"],
+    "free_tier": "billing_required",
+    "cost_note": "Individual APIs have monthly no-cost usage caps, but a billing-enabled project is generally required.",
+    "docs_url": "https://developers.google.com/maps/documentation",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-sheets-api",
+    "name": "Google Sheets API",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["data", "productivity"],
+    "tags": ["spreadsheet", "database", "rows", "collaboration", "workspace", "api"],
+    "summary": "Read and update Google spreadsheets from an application.",
+    "best_for": ["small shared datasets", "instructor-maintained catalogs", "simple collaborative admin data"],
+    "avoid_when": ["the application needs transactional guarantees", "OAuth setup would slow down the workshop"],
+    "free_tier": "free_with_limits",
+    "cost_note": "The API has request quotas and no additional API charge at ordinary workshop scale; authentication is still required.",
+    "docs_url": "https://developers.google.com/workspace/sheets/api/guides/concepts",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-drive-api",
+    "name": "Google Drive API",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["data", "productivity"],
+    "tags": ["files", "storage", "drive", "documents", "upload", "workspace"],
+    "summary": "Programmatic access to files and folders stored in Google Drive.",
+    "best_for": ["student file workflows", "document selection", "saving generated artifacts"],
+    "avoid_when": ["you want zero OAuth setup", "the application needs anonymous public object storage"],
+    "free_tier": "free_with_limits",
+    "cost_note": "API access uses quotas and the user's existing Drive storage; OAuth configuration is required for private files.",
+    "docs_url": "https://developers.google.com/workspace/drive/api/guides/about-sdk",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-calendar-api",
+    "name": "Google Calendar API",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["productivity", "data"],
+    "tags": ["calendar", "schedule", "events", "availability", "meetings", "workspace"],
+    "summary": "Create, read, and update calendar events and availability.",
+    "best_for": ["scheduling assistants", "event planners", "availability matching"],
+    "avoid_when": ["OAuth consent is outside the workshop scope", "a static schedule is enough"],
+    "free_tier": "free_with_limits",
+    "cost_note": "API usage is quota-limited and generally has no separate charge; user authorization is required for private calendars.",
+    "docs_url": "https://developers.google.com/workspace/calendar/api/guides/overview",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "youtube-data-api",
+    "name": "YouTube Data API",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["data"],
+    "tags": ["youtube", "video", "search", "channels", "playlists", "metadata"],
+    "summary": "Search and retrieve YouTube video, channel, and playlist metadata.",
+    "best_for": ["video discovery", "learning-resource finders", "channel analytics prototypes"],
+    "avoid_when": ["you need video transcripts without another permitted source", "high-volume searching is required"],
+    "free_tier": "free_with_limits",
+    "cost_note": "Projects receive a daily quota; search operations consume substantially more quota units than simple reads.",
+    "docs_url": "https://developers.google.com/youtube/v3/getting-started",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-books-api",
+    "name": "Google Books API",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["data"],
+    "tags": ["books", "search", "isbn", "authors", "education", "metadata"],
+    "summary": "Search Google Books and retrieve public book and volume metadata.",
+    "best_for": ["reading apps", "book discovery", "ISBN and author lookup"],
+    "avoid_when": ["you need unrestricted full book text", "the project is unrelated to books"],
+    "free_tier": "free_with_limits",
+    "cost_note": "Public volume searches are available for prototypes; API keys, user data, and usage limits follow the API documentation.",
+    "docs_url": "https://developers.google.com/books/docs/v1/using",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-apps-script",
+    "name": "Google Apps Script",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["compute", "productivity"],
+    "tags": ["automation", "sheets", "docs", "gmail", "javascript", "webhook", "workspace"],
+    "summary": "Hosted JavaScript automation platform integrated with Google Workspace.",
+    "best_for": ["quick Workspace automation", "Sheet-backed prototypes", "simple web endpoints"],
+    "avoid_when": ["you need a conventional backend with predictable long-running execution"],
+    "free_tier": "free_with_limits",
+    "cost_note": "Apps Script is available with Google accounts and governed by daily and execution quotas.",
+    "docs_url": "https://developers.google.com/apps-script/overview",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "material-design",
+    "name": "Material Design",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["design"],
+    "tags": ["ui", "ux", "design-system", "components", "accessibility", "frontend"],
+    "summary": "Google's design system, guidance, and component ecosystem for consistent interfaces.",
+    "best_for": ["rapid UI decisions", "accessible patterns", "polished hackathon interfaces"],
+    "avoid_when": ["the team already has a design system it can implement faster"],
+    "free_tier": "free",
+    "cost_note": "The design guidance and open-source component libraries are free.",
+    "docs_url": "https://m3.material.io/",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "google-fonts",
+    "name": "Google Fonts",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": ["design"],
+    "tags": ["fonts", "typography", "web", "design", "frontend"],
+    "summary": "Open font catalog with straightforward web embedding and downloadable font files.",
+    "best_for": ["quick typography improvements", "web demos", "presentation polish"],
+    "avoid_when": ["the project must avoid third-party font requests and you cannot self-host"],
+    "free_tier": "free",
+    "cost_note": "Fonts in the catalog are open source and free to use under their listed licenses.",
+    "docs_url": "https://developers.google.com/fonts/docs/getting_started",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "provider": "Supabase",
+    "google_ecosystem": false,
+    "categories": ["authentication", "database", "hosting"],
+    "tags": ["postgres", "database", "auth", "storage", "realtime", "backend"],
+    "summary": "Hosted Postgres platform with authentication, storage, realtime features, and generated APIs.",
+    "best_for": ["relational data", "quick backend setup", "SQL-friendly teams"],
+    "avoid_when": ["the workshop must remain entirely in Google's ecosystem"],
+    "free_tier": "free_with_limits",
+    "cost_note": "A limited free plan is available; check current project pausing and resource limits.",
+    "docs_url": "https://supabase.com/docs",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "provider": "Vercel",
+    "google_ecosystem": false,
+    "categories": ["hosting", "compute"],
+    "tags": ["hosting", "deploy", "nextjs", "frontend", "serverless", "web"],
+    "summary": "Web deployment platform with strong integration for Next.js and Git-based workflows.",
+    "best_for": ["fast frontend deployment", "Next.js demos", "preview URLs"],
+    "avoid_when": ["the project must remain entirely in Google's ecosystem", "the intended usage is commercial and exceeds plan terms"],
+    "free_tier": "free_with_limits",
+    "cost_note": "A free personal plan exists with usage and acceptable-use constraints.",
+    "docs_url": "https://vercel.com/docs",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "openstreetmap",
+    "name": "OpenStreetMap",
+    "provider": "OpenStreetMap contributors",
+    "google_ecosystem": false,
+    "categories": ["maps", "data"],
+    "tags": ["maps", "location", "geodata", "open-data", "geocoding"],
+    "summary": "Collaborative open geographic database used by many mapping libraries and services.",
+    "best_for": ["open map data", "prototypes that cannot enable Google Maps billing", "geographic datasets"],
+    "avoid_when": ["you expect the public tile servers to act as unrestricted production infrastructure"],
+    "free_tier": "free_with_limits",
+    "cost_note": "The data is open under its license; public services have usage policies and are not a free unlimited hosting service.",
+    "docs_url": "https://wiki.openstreetmap.org/wiki/API",
+    "verified_at": "2026-09-04"
+  },
+  {
+    "id": "python-tutorial",
+    "name": "Python Tutorial",
+    "provider": "Python Software Foundation",
+    "google_ecosystem": false,
+    "categories": [
+      "language",
+      "backend"
+    ],
+    "tags": [
+      "python",
+      "beginner",
+      "functions",
+      "modules",
+      "exceptions"
+    ],
+    "summary": "Introduction to Python syntax, data structures, functions, modules, and exceptions.",
+    "best_for": [
+      "Learning the language used by this workshop"
+    ],
+    "avoid_when": [
+      "A language tutorial does not cover deploying a secure web service."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://docs.python.org/3/tutorial/",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "mdn-web",
+    "name": "MDN Learn Web Development",
+    "provider": "MDN contributors",
+    "google_ecosystem": false,
+    "categories": [
+      "frontend",
+      "language"
+    ],
+    "tags": [
+      "html",
+      "css",
+      "javascript",
+      "web",
+      "beginner"
+    ],
+    "summary": "Structured tutorials covering the core skills for building web pages.",
+    "best_for": [
+      "Learning browser fundamentals before choosing a framework"
+    ],
+    "avoid_when": [
+      "This is reference and learning material, not application hosting."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "react-docs",
+    "name": "React Learn",
+    "provider": "React team",
+    "google_ecosystem": false,
+    "categories": [
+      "frontend"
+    ],
+    "tags": [
+      "react",
+      "components",
+      "hooks",
+      "state",
+      "jsx"
+    ],
+    "summary": "Official introduction to components, events, state, and sharing data in React.",
+    "best_for": [
+      "Building interactive component-based interfaces"
+    ],
+    "avoid_when": [
+      "React does not itself provide a backend or managed database."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://react.dev/learn",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "typescript-docs",
+    "name": "TypeScript Documentation",
+    "provider": "Microsoft",
+    "google_ecosystem": false,
+    "categories": [
+      "language",
+      "frontend",
+      "backend"
+    ],
+    "tags": [
+      "typescript",
+      "types",
+      "javascript",
+      "interfaces"
+    ],
+    "summary": "Handbook and tutorials for adding static type checking to JavaScript.",
+    "best_for": [
+      "Catching type mistakes while building JavaScript applications"
+    ],
+    "avoid_when": [
+      "Static types do not validate untrusted network data at runtime."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://www.typescriptlang.org/docs/",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "fastapi-docs",
+    "name": "FastAPI Tutorial",
+    "provider": "FastAPI project",
+    "google_ecosystem": false,
+    "categories": [
+      "backend"
+    ],
+    "tags": [
+      "fastapi",
+      "python",
+      "api",
+      "validation",
+      "openapi"
+    ],
+    "summary": "Tutorial for Python HTTP APIs with request models and generated API documentation.",
+    "best_for": [
+      "Building a small Python JSON API"
+    ],
+    "avoid_when": [
+      "Hosting and any external model calls are separate from the framework."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://fastapi.tiangolo.com/tutorial/",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "flask-docs",
+    "name": "Flask Documentation",
+    "provider": "Pallets",
+    "google_ecosystem": false,
+    "categories": [
+      "backend"
+    ],
+    "tags": [
+      "flask",
+      "python",
+      "routes",
+      "templates",
+      "http"
+    ],
+    "summary": "Guide to a Python web framework with routing, templates, and request handling.",
+    "best_for": [
+      "Small Python web applications and local demos"
+    ],
+    "avoid_when": [
+      "The development server is not a production deployment configuration."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://flask.palletsprojects.com/en/stable/",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "nodejs-docs",
+    "name": "Node.js Introduction",
+    "provider": "Node.js project",
+    "google_ecosystem": false,
+    "categories": [
+      "backend",
+      "language"
+    ],
+    "tags": [
+      "nodejs",
+      "node",
+      "javascript",
+      "server",
+      "runtime"
+    ],
+    "summary": "Introduction to running JavaScript outside the browser, including HTTP servers.",
+    "best_for": [
+      "Using JavaScript for backend code"
+    ],
+    "avoid_when": [
+      "A local runtime does not include a hosted server."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://nodejs.org/learn/getting-started/introduction-to-nodejs",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "express-docs",
+    "name": "Express Getting Started",
+    "provider": "Express project",
+    "google_ecosystem": false,
+    "categories": [
+      "backend"
+    ],
+    "tags": [
+      "express",
+      "nodejs",
+      "javascript",
+      "routing",
+      "http"
+    ],
+    "summary": "Setup guide for the Express web framework on Node.js.",
+    "best_for": [
+      "Building small JavaScript HTTP services"
+    ],
+    "avoid_when": [
+      "You still need application validation, authentication, and deployment decisions."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://expressjs.com/en/starter/installing/",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "vite-docs",
+    "name": "Vite Guide",
+    "provider": "Vite team",
+    "google_ecosystem": false,
+    "categories": [
+      "frontend",
+      "developer-tools"
+    ],
+    "tags": [
+      "vite",
+      "frontend",
+      "build",
+      "javascript",
+      "dev-server"
+    ],
+    "summary": "Guide to a frontend development server and production build tool.",
+    "best_for": [
+      "Starting and building a browser frontend"
+    ],
+    "avoid_when": [
+      "A production build still needs hosting; the dev server is for development."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://vite.dev/guide/",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "web-dev-learn",
+    "name": "web.dev Learn",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "frontend",
+      "accessibility"
+    ],
+    "tags": [
+      "html",
+      "css",
+      "javascript",
+      "forms",
+      "responsive",
+      "accessibility"
+    ],
+    "summary": "Courses covering web fundamentals, responsive design, accessibility, and performance.",
+    "best_for": [
+      "Learning browser development with Google-authored resources"
+    ],
+    "avoid_when": [
+      "The courses do not provide backend hosting."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://web.dev/learn",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "chrome-devtools",
+    "name": "Chrome DevTools",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "developer-tools",
+      "testing",
+      "frontend"
+    ],
+    "tags": [
+      "chrome",
+      "debugging",
+      "network",
+      "console",
+      "performance"
+    ],
+    "summary": "Browser tools for inspecting pages, debugging JavaScript, and examining network activity.",
+    "best_for": [
+      "Diagnosing frontend errors and API requests"
+    ],
+    "avoid_when": [
+      "Browser inspection alone does not test backend business logic."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://developer.chrome.com/docs/devtools",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "angular-tutorial",
+    "name": "Angular Tutorial",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "frontend"
+    ],
+    "tags": [
+      "angular",
+      "typescript",
+      "components",
+      "forms",
+      "routing"
+    ],
+    "summary": "Interactive introduction to Angular's component-based web application framework.",
+    "best_for": [
+      "Teams already interested in Angular and TypeScript"
+    ],
+    "avoid_when": [
+      "Learning a new full framework can consume a short hackathon."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://angular.dev/tutorials/learn-angular",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "flutter-docs",
+    "name": "Flutter Documentation",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "mobile",
+      "frontend"
+    ],
+    "tags": [
+      "flutter",
+      "dart",
+      "widgets",
+      "android",
+      "ios",
+      "web"
+    ],
+    "summary": "Guides to building applications with Flutter widgets and the Dart language.",
+    "best_for": [
+      "Cross-platform interfaces for teams familiar with Flutter"
+    ],
+    "avoid_when": [
+      "Device toolchains and app-store publishing require separate setup."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://docs.flutter.dev/",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "dart-docs",
+    "name": "Dart Language Guide",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "language",
+      "mobile"
+    ],
+    "tags": [
+      "dart",
+      "flutter",
+      "async",
+      "types"
+    ],
+    "summary": "Reference and introduction to Dart language features.",
+    "best_for": [
+      "Learning the language used by Flutter"
+    ],
+    "avoid_when": [
+      "The language guide does not replace Flutter's UI documentation."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://dart.dev/language",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "android-compose",
+    "name": "Android Basics with Compose",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "mobile",
+      "frontend"
+    ],
+    "tags": [
+      "android",
+      "kotlin",
+      "compose",
+      "mobile",
+      "ui"
+    ],
+    "summary": "Course for developing Android applications using Kotlin and Jetpack Compose.",
+    "best_for": [
+      "Native Android prototypes"
+    ],
+    "avoid_when": [
+      "Android tooling setup may take time on students' laptops."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://developer.android.com/courses/android-basics-compose/course",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "firebase-emulators",
+    "name": "Firebase Local Emulator Suite",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "testing",
+      "developer-tools"
+    ],
+    "tags": [
+      "firebase",
+      "emulator",
+      "offline",
+      "local",
+      "testing"
+    ],
+    "summary": "Local emulators for developing and testing supported Firebase services.",
+    "best_for": [
+      "Testing supported Firebase integrations without using live project data"
+    ],
+    "avoid_when": [
+      "Emulator behavior has differences from production and requires local tooling."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://firebase.google.com/docs/emulator-suite",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "firebase-rules",
+    "name": "Firebase Security Rules Guide",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "security",
+      "database"
+    ],
+    "tags": [
+      "firebase",
+      "firestore",
+      "rules",
+      "authorization",
+      "permissions"
+    ],
+    "summary": "Documentation for controlling access to supported Firebase data services.",
+    "best_for": [
+      "Restricting which users can read or write application records"
+    ],
+    "avoid_when": [
+      "Authentication does not automatically supply correct authorization rules."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://firebase.google.com/docs/rules",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "firebase-verify-tokens",
+    "name": "Firebase ID Token Verification",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "security",
+      "authentication",
+      "backend"
+    ],
+    "tags": [
+      "firebase",
+      "token",
+      "verify",
+      "authentication",
+      "backend",
+      "identity"
+    ],
+    "summary": "Guide to verifying client Firebase ID tokens on a custom backend.",
+    "best_for": [
+      "Checking authenticated identity before serving protected backend routes"
+    ],
+    "avoid_when": [
+      "Checking an email suffix or decoding a token alone does not verify identity; verify the token and apply authorization separately."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://firebase.google.com/docs/auth/admin/verify-id-tokens",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "gemini-function-calling",
+    "name": "Gemini Function Calling Guide",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "ai",
+      "backend"
+    ],
+    "tags": [
+      "gemini",
+      "function-calling",
+      "tools",
+      "agents",
+      "schema"
+    ],
+    "summary": "Documentation for declaring functions, receiving model-selected calls, and returning execution results.",
+    "best_for": [
+      "Understanding the model-to-Python tool boundary"
+    ],
+    "avoid_when": [
+      "The application must validate and execute custom functions; a model request is not execution."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://ai.google.dev/gemini-api/docs/function-calling",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "gemini-structured-output",
+    "name": "Gemini Structured Output Guide",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "ai",
+      "backend"
+    ],
+    "tags": [
+      "gemini",
+      "json",
+      "schema",
+      "structured",
+      "validation"
+    ],
+    "summary": "Guide to requesting model outputs constrained to a supported JSON schema.",
+    "best_for": [
+      "Producing machine-readable responses"
+    ],
+    "avoid_when": [
+      "Valid JSON and schema compliance do not establish factual correctness."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://ai.google.dev/gemini-api/docs/structured-output",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "gemini-pricing-docs",
+    "name": "Gemini API Pricing Reference",
+    "provider": "Google",
+    "google_ecosystem": true,
+    "categories": [
+      "ai"
+    ],
+    "tags": [
+      "gemini",
+      "pricing",
+      "billing",
+      "free",
+      "grounding",
+      "search"
+    ],
+    "summary": "Official per-model pricing reference, including supported tools and tier differences.",
+    "best_for": [
+      "Checking model and tool costs before a workshop"
+    ],
+    "avoid_when": [
+      "Pricing is volatile; consult the live table instead of assuming every tool is free."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://ai.google.dev/gemini-api/docs/pricing",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "pytest-docs",
+    "name": "pytest Getting Started",
+    "provider": "pytest project",
+    "google_ecosystem": false,
+    "categories": [
+      "testing"
+    ],
+    "tags": [
+      "pytest",
+      "python",
+      "unit",
+      "fixtures",
+      "assertions"
+    ],
+    "summary": "Introduction to writing and running Python tests with assertions and fixtures.",
+    "best_for": [
+      "Testing Python functions and application behavior locally"
+    ],
+    "avoid_when": [
+      "Mocked API tests do not prove a live provider is available."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://docs.pytest.org/en/stable/getting-started.html",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "playwright-docs",
+    "name": "Playwright Documentation",
+    "provider": "Microsoft",
+    "google_ecosystem": false,
+    "categories": [
+      "testing"
+    ],
+    "tags": [
+      "playwright",
+      "browser",
+      "e2e",
+      "automation",
+      "testing"
+    ],
+    "summary": "Guide to browser automation and end-to-end application testing.",
+    "best_for": [
+      "Testing user flows in a browser"
+    ],
+    "avoid_when": [
+      "Browser binaries require installation; remote test services have separate terms."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://playwright.dev/docs/intro",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "vitest-docs",
+    "name": "Vitest Guide",
+    "provider": "Vitest team",
+    "google_ecosystem": false,
+    "categories": [
+      "testing"
+    ],
+    "tags": [
+      "vitest",
+      "javascript",
+      "typescript",
+      "unit",
+      "vite"
+    ],
+    "summary": "Guide to a JavaScript and TypeScript test runner integrated with Vite.",
+    "best_for": [
+      "Testing frontend utilities and components"
+    ],
+    "avoid_when": [
+      "Unit tests alone do not cover an entire deployed user journey."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://vitest.dev/guide/",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "testing-library-docs",
+    "name": "Testing Library Documentation",
+    "provider": "Testing Library contributors",
+    "google_ecosystem": false,
+    "categories": [
+      "testing",
+      "frontend"
+    ],
+    "tags": [
+      "testing-library",
+      "react",
+      "components",
+      "dom",
+      "accessibility"
+    ],
+    "summary": "Utilities and guidance for testing UI behavior through user-facing interactions.",
+    "best_for": [
+      "Testing components using roles, labels, and visible content"
+    ],
+    "avoid_when": [
+      "Component tests do not replace browser-level integration tests."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://testing-library.com/docs/",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "git-book",
+    "name": "Pro Git Book",
+    "provider": "Pro Git authors",
+    "google_ecosystem": false,
+    "categories": [
+      "developer-tools"
+    ],
+    "tags": [
+      "git",
+      "branches",
+      "merge",
+      "commits",
+      "version-control"
+    ],
+    "summary": "Book explaining Git version control, branching, and collaboration.",
+    "best_for": [
+      "Coordinating hackathon changes and understanding merges"
+    ],
+    "avoid_when": [
+      "Git does not prevent accidentally committing a secret."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://git-scm.com/book/en/v2",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "github-get-started",
+    "name": "GitHub Getting Started",
+    "provider": "GitHub",
+    "google_ecosystem": false,
+    "categories": [
+      "developer-tools"
+    ],
+    "tags": [
+      "github",
+      "repository",
+      "pull-request",
+      "collaboration"
+    ],
+    "summary": "Documentation for repositories and collaborative development on GitHub.",
+    "best_for": [
+      "Learning repository and pull-request workflows"
+    ],
+    "avoid_when": [
+      "Reading documentation is free; hosted products have their own plan limits."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://docs.github.com/en/get-started",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "python-sqlite",
+    "name": "Python sqlite3 Documentation",
+    "provider": "Python Software Foundation",
+    "google_ecosystem": false,
+    "categories": [
+      "database",
+      "backend"
+    ],
+    "tags": [
+      "sqlite",
+      "sqlite3",
+      "python",
+      "sql",
+      "local",
+      "parameters"
+    ],
+    "summary": "Reference for Python's interface to an embedded SQLite database.",
+    "best_for": [
+      "Small local demos with relational data"
+    ],
+    "avoid_when": [
+      "Use parameterized queries; local database files are not managed cloud storage."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://docs.python.org/3/library/sqlite3.html",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "postgresql-tutorial",
+    "name": "PostgreSQL Tutorial",
+    "provider": "PostgreSQL Global Development Group",
+    "google_ecosystem": false,
+    "categories": [
+      "database"
+    ],
+    "tags": [
+      "postgresql",
+      "postgres",
+      "sql",
+      "relational",
+      "joins"
+    ],
+    "summary": "Introduction to relational databases and SQL using PostgreSQL.",
+    "best_for": [
+      "Learning SQL and building relational application storage"
+    ],
+    "avoid_when": [
+      "Operating a server and buying managed hosting are separate concerns."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://www.postgresql.org/docs/current/tutorial.html",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "pandas-docs",
+    "name": "pandas Getting Started",
+    "provider": "pandas contributors",
+    "google_ecosystem": false,
+    "categories": [
+      "data"
+    ],
+    "tags": [
+      "pandas",
+      "python",
+      "csv",
+      "dataframe",
+      "tabular"
+    ],
+    "summary": "Guides for reading, transforming, and analyzing tabular data in Python.",
+    "best_for": [
+      "Cleaning CSV datasets for a prototype"
+    ],
+    "avoid_when": [
+      "In-memory processing may not fit datasets larger than available memory."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://pandas.pydata.org/docs/getting_started/index.html",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "numpy-docs",
+    "name": "NumPy Beginner Guide",
+    "provider": "NumPy contributors",
+    "google_ecosystem": false,
+    "categories": [
+      "data"
+    ],
+    "tags": [
+      "numpy",
+      "python",
+      "arrays",
+      "numerical",
+      "math"
+    ],
+    "summary": "Introduction to numerical arrays and array operations in Python.",
+    "best_for": [
+      "Numerical processing and scientific prototypes"
+    ],
+    "avoid_when": [
+      "An array library does not itself provide a trained AI model."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "owasp-auth",
+    "name": "OWASP Authentication Cheat Sheet",
+    "provider": "OWASP",
+    "google_ecosystem": false,
+    "categories": [
+      "security",
+      "authentication"
+    ],
+    "tags": [
+      "authentication",
+      "passwords",
+      "sessions",
+      "login",
+      "security"
+    ],
+    "summary": "Implementation guidance covering authentication and common security mistakes.",
+    "best_for": [
+      "Reviewing a proposed login design"
+    ],
+    "avoid_when": [
+      "Reading a checklist does not certify an application as secure."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+    "verified_at": "2026-09-05"
+  },
+  {
+    "id": "w3c-accessibility",
+    "name": "W3C WAI Tutorials",
+    "provider": "W3C",
+    "google_ecosystem": false,
+    "categories": [
+      "accessibility",
+      "frontend"
+    ],
+    "tags": [
+      "accessibility",
+      "a11y",
+      "forms",
+      "labels",
+      "keyboard",
+      "images"
+    ],
+    "summary": "Tutorials for making common web components accessible.",
+    "best_for": [
+      "Building usable forms, images, and navigation"
+    ],
+    "avoid_when": [
+      "Tutorial examples still need testing in the actual application."
+    ],
+    "resource_type": "documentation",
+    "free_tier": "free_documentation",
+    "cost_note": "This documentation is free to read. It does not promise free hosted services, API calls, deployment, or publishing.",
+    "docs_url": "https://www.w3.org/WAI/tutorials/",
+    "verified_at": "2026-09-05"
+  }
+]

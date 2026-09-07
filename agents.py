@@ -1,78 +1,36 @@
+import json
+
 from google import genai
-from google.genai import types
 
-from tools import google_search_tool
+from tools import RESOURCE_SEARCH_TOOL, search_hackathon_resources
 
-
-class AgentError(Exception):
-    """A beginner-friendly error raised when an agent cannot complete its job."""
 
 def create_client(api_key: str) -> genai.Client:
     return genai.Client(api_key=api_key)
 
-def call_gemini(
-    client: genai.Client,
-    model: str,
-    system_instruction: str,
-    user_prompt: str,
-    tools: list[types.Tool] | None = None,
-) -> str:
-    """Send one prompt to Gemini and return plain text.
 
-    This helper keeps Gemini-specific code in one place so the agent functions
-    below can stay focused on their roles and responsibilities.
-    """
-    try:
-        config = types.GenerateContentConfig(
-            system_instruction=system_instruction,
-            tools=tools,
-            temperature=0.7,
-        )
-        # Chat.send_message avoids the SDK warning about using tools directly
-        # with models.generate_content, while keeping the code easy to follow.
-        chat = client.chats.create(
-            model=model,
-            config=config,
-        )
-        response = chat.send_message(user_prompt)
-    except Exception as error:
-        error_text = str(error)
-
-        if "429" in error_text or "RESOURCE_EXHAUSTED" in error_text:
-            raise AgentError(
-                "HackTeam reached the Gemini API quota or rate limit.\n\n"
-                "This can happen during workshops because HackTeam makes multiple Gemini calls:\n"
-                "- Research Agent\n"
-                "- Product Agent\n"
-                "- Engineering Agent\n"
-                "- Manager Agent\n\n"
-                "What to try:\n"
-                "- Wait a few minutes and run it again\n"
-                "- Check your usage at https://ai.dev/rate-limit\n"
-                "- Use a different API key if you have one\n"
-                "- During development, test one agent at a time instead of the full team\n\n"
-                f"Original error: {error}"
-            ) from error
-
-        raise AgentError(
-            "HackTeam could not reach Gemini right now.\n\n"
-            "Possible causes:\n"
-            "- Invalid Gemini API key\n"
-            "- Temporary network issue\n"
-            "- Temporary Gemini service issue\n\n"
-            f"Original error: {error}"
-        ) from error
-
-    text = getattr(response , "text" , None)
-    if not text or not text.strip():
-        raise AgentError(
-            "Gemini returned an empty response. Try again with a little more detail in your idea."
-        )
-
-    return text.strip()
+def request_gemini(client, model, instruction, prompt, tools=None):
+    """Make one Gemini request for any agent."""
+    generation_config = {"temperature": 0.5}
+    if tools:
+        generation_config["tool_choice"] = "any"
+    return client.interactions.create(
+        model=model,
+        input=prompt,
+        system_instruction=instruction,
+        tools=tools or [],
+        generation_config=generation_config,
+        store=False,
+    )
 
 
-def build_project_prompt(idea: str , context: str) -> str:
+def call_gemini(client, model, system_instruction, user_prompt):
+    """Run an ordinary agent and return its text."""
+    response = request_gemini(client, model, system_instruction, user_prompt)
+    return response.output_text
+
+
+def build_project_prompt(idea: str, context: str) -> str:
     extra_context = context.strip() or "No extra context was provided."
     return f"""
 Hackathon idea:
@@ -82,35 +40,57 @@ Extra context:
 {extra_context}
 """.strip()
 
-def run_research_agent(client: genai.Client , model: str , idea: str , context: str = "") -> str:
-    system_instruction = """
-You are the Research Agent for HackTeam AI.
 
-Your job is to investigate the ecosystem around a hackathon project idea.
-Focus on practical information a student team can use quickly:
-- relevant APIs, services, libraries, datasets, and docs
-- similar products or examples worth knowing about
-- shortcuts that make the project easier to build in a hackathon
-- risks caused by unavailable APIs, pricing, auth, or data access
-
-Use Google Search grounding when useful. Prefer actionable findings over exhaustive research.
-Avoid academic depth unless it directly helps the team build.
-
-Output a concise research brief with bullets and links or named resources when available.
+def run_research_agent(client, model, idea, context="", reporter=None):
+    instruction = """
+You are the Research Agent in this multi-agent hackathon planning team.
+Find practical services and coding docs for this hackathon idea.
+Request up to three focused keyword searches in your first response.
+The supplied catalog is a snapshot, not live web search.
+Recommend only relevant matches; say when evidence is missing.
+Respect the user's Google-only and no-billing constraints when selecting results.
+Cite exact catalog documentation URLs and preserve cost caveats.
+Free documentation does not mean free hosting or API usage.
+Write a brief explaining which resources fit, their limitations, and a
+recommended combination. Label assumptions instead of inventing facts.
 """.strip()
+    prompt = build_project_prompt(idea, context)
 
-    prompt = build_project_prompt(idea , context)
-    return call_gemini(
-        client=client,
-        model=model,
-        system_instruction=system_instruction,
-        user_prompt=prompt,
-        tools=[google_search_tool()],
+    # 1. Gemini selects search arguments. Only Research receives a tool.
+    response = request_gemini(
+        client, model, instruction, prompt, tools=[RESOURCE_SEARCH_TOOL]
     )
+    calls = [step for step in response.steps if step.type == "function_call"]
 
-def run_product_agent(client: genai.Client , model: str , idea: str , context: str = "") -> str:
+    # 2. Python runs the requested searches locally.
+    resources = []
+    for call in calls[:3]:
+        query = call.arguments["query"]
+        matches = search_hackathon_resources(query)
+        resources.extend(matches)
+
+        if reporter:
+            reporter(f"    [Researcher -> Tool] Search: {query}")
+            names = ", ".join(item["name"] for item in matches) or "No matches"
+            reporter(f"    [Tool -> Researcher] {names}")
+
+    # 3. Return evidence in a fresh prompt without tools, so the search stops.
+    evidence = "\n\nCatalog evidence (original records):\n" + json.dumps(resources)
+    brief = call_gemini(
+        client,
+        model,
+        instruction,
+        prompt + evidence + "\nWrite the research brief using these results.",
+    )
+    # Keep original sources available to Engineering and Manager as well.
+    return brief + evidence
+
+
+def run_product_agent(
+    client: genai.Client, model: str, idea: str, context: str = ""
+) -> str:
     system_instruction = """
-You are the Product Agent for HackTeam AI.
+You are the Product Agent in this multi-agent hackathon planning team.
 
 Your job is to turn the idea into a focused hackathon product.
 Focus on:
@@ -125,10 +105,12 @@ Focus on:
 Be practical, opinionated, and ruthless about scope.
 Avoid suggesting too many features, platforms, or complex product directions.
 
+Label proposed user needs as hypotheses; do not invent market research or
+facts about a university or existing products.
 Output a concise product brief.
 """.strip()
 
-    prompt = build_project_prompt(idea , context)
+    prompt = build_project_prompt(idea, context)
     return call_gemini(
         client=client,
         model=model,
@@ -136,9 +118,15 @@ Output a concise product brief.
         user_prompt=prompt,
     )
 
-def run_engineering_agent(client: genai.Client , model: str , idea: str , context: str = "") -> str:
+def run_engineering_agent(
+    client: genai.Client,
+    model: str,
+    idea: str,
+    context: str = "",
+    research_results: str = "",
+) -> str:
     system_instruction = """
-You are the Engineering Agent for HackTeam AI.
+You are the Engineering Agent in this multi-agent hackathon planning team.
 
 Your job is to convert the project idea into a realistic technical plan.
 Focus on:
@@ -151,10 +139,23 @@ Focus on:
 Prefer boring, reliable tools over impressive complexity.
 Avoid microservices, Kubernetes, event buses, custom infrastructure, and unnecessary AI complexity.
 
+Treat constraints in the user's extra context as requirements. If the user
+requests Google-only or no-billing services, do not silently recommend an
+outside provider or a billing-required service. Explain any tradeoff instead.
+
+Use the original catalog records when supplied. Cite exact documentation
+links for technical recommendations and label unsupported details as needing
+verification. Free documentation does not imply free hosting or API usage.
+An email suffix check alone is not authentication or proof of ownership.
+For demos without login, use local mock data or an emulator, not open cloud
+read/write permissions. Distinguish frontend hosting from database storage.
+
 Output a concise engineering brief.
 """.strip()
 
-    prompt = build_project_prompt(idea , context)
+    prompt = build_project_prompt(idea, context)
+    if research_results:
+        prompt += "\n\nResearch findings and catalog evidence:\n" + research_results
     return call_gemini(
         client=client,
         model=model,
@@ -172,11 +173,26 @@ def run_manager_agent(
     engineering_plan: str,
 ) -> str:
     system_instruction = """
-You are the Manager Agent for HackTeam AI.
+You are the Manager Agent in this multi-agent hackathon planning team.
 
 Your job is to synthesize the Research, Product, and Engineering agents into one coherent hackathon blueprint.
 Do not simply paste their outputs together. Reconcile conflicts and make final decisions.
 Keep the plan useful, readable, and realistic for a student hackathon team.
+
+Treat the original constraints as requirements. For external APIs and
+services, only recommend resources supported by the Research Agent output or
+explicitly named by the user. Do not introduce a second AI provider. If a
+Google-only, no-billing constraint makes part of the plan impossible, state
+the tradeoff and choose a local demo rather than silently breaking it.
+
+Prefer original catalog records over a specialist's unsupported assertions.
+Include exact documentation links and resource IDs for recommended resources.
+Clearly label design choices, user-need hypotheses, and facts needing
+verification. Do not claim to have browsed the linked pages. A catalog entry
+is a short reviewed description, not a copy of the full documentation.
+Do not describe an email suffix check alone as secure authentication.
+Do not recommend open cloud database permissions. For a demo without login,
+use local mock data or an emulator; a local frontend does not make a cloud database local.
 
 Use this structure:
 # Project Name
@@ -226,11 +242,15 @@ Create the final hackathon blueprint.
         user_prompt=prompt,
     )
 
-def build_hackathon_blueprint(client: genai.Client , model: str , idea: str , context: str = "") -> str:
+def build_hackathon_blueprint(
+    client: genai.Client, model: str, idea: str, context: str = ""
+) -> str:
     """Run the simple multi-agent workflow from specialists to manager."""
-    research_results = run_research_agent(client , model , idea , context)
-    product_plan = run_product_agent(client , model , idea , context)
-    engineering_plan = run_engineering_agent(client , model , idea , context)
+    research_results = run_research_agent(client, model, idea, context)
+    product_plan = run_product_agent(client, model, idea, context)
+    engineering_plan = run_engineering_agent(
+        client, model, idea, context, research_results=research_results
+    )
 
     return run_manager_agent(
         client=client,
