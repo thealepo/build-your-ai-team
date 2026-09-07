@@ -1,8 +1,10 @@
-# Multi-Agent AI Workshop -- Hackathon Blueprint System
+# Multi-Agent AI Workshop: Hackathon Blueprint System
 
 A hands-on workshop project regarding agents and multi-agent systems: four Gemini agents turn a hackathon idea into a
 full blueprint. Research alone uses a tool. Product scopes the MVP, Engineering
 proposes an implementation, and Manager reconciles their work into the final plan.
+
+<img width="3917" height="4805" alt="Image" src="https://github.com/user-attachments/assets/c644f4d7-fb52-48f0-ab86-48b39f8d3d98" />
 
 ## Setup
 
